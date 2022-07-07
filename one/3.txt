@@ -1,0 +1,276 @@
+Hello
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+987
+Определяет, является ли файл обычным файлом.
+
+Список параметров ¶
+filename
+Путь к файлу.
+
+Возвращаемые значения ¶
+Возвращает true, если файл существует и является обычным файлом, иначе возвращает false.
+
+Замечание: Так как тип integer в PHP является целым числом со знаком, и многие платформы используют 32-х битные целые числа, то некоторые функции файловых систем могут возвращать неожиданные результаты для файлов размером больше 2 Гб.
+
+Ошибки ¶
+В случае неудачного завершения работы генерируется ошибка уровня E_WARNING.
+
+Примеры ¶
+Пример #1 Пример использования is_file()
+
+<?php
+var_dump(is_file('a_file.txt')) . "\n";
+var_dump(is_file('/usr/bin/')) . "\n";
+?>
+Результат выполнения данного примера:
+
+bool(true)
+bool(false)
+Примечания ¶
+Замечание: Результаты этой функции кешируются. Более подробную информацию смотрите в разделе clearstatcache().
+
+Подсказка
+Начиная с PHP 5.0.0, эта функция также может быть использована с некоторыми обёртками url. Список обёрток, поддерживаемых семейством функций stat(), смотрите в разделе Поддерживаемые протоколы и обёртки.
+
+Смотрите также ¶
+is_dir() - Определяет, является ли имя файла директорией
+is_link() - Определяет, является ли файл символической ссылкой
+SplFileInfo
+add a note add a note
+User Contributed Notes 23 notes
+up
+down
+51Anonymous ¶10 years ago
+Note that is_file() returns false if the parent directory doesn't have +x set for you; this make sense, but other functions such as readdir() don't seem to have this limitation. The end result is that you can loop through a directory's files but is_file() will always fail.
+up
+down
+9Anonymous ¶17 years ago
+### Symbolic links are resolved ###
+
+If you pass a symlink (unix symbolic link) as parameter, is_file will resolve the symlink and will give information about the refered file. For example:
+
+  touch file
+  ln -s file link
+  echo '<? if (is_file("link")) echo "y\n"; ?>' | php -q
+
+will print "y".
+
+is_dir resolves symlinks too.
+up
+down
+8andreas dot stagl at fits dot at ¶20 years ago
+if you're running apache as a service on a win32 machine, an you try to determinate if a file on an other pc in your network exists - ex.: is_file('//servername/share/dir1/dir2/file.txt') - you may return false when you're running the service as LocalSystem. To avoid this, you have to start the Apache-Service as a 'registered' domain user.
+up
+down
+7ludvig dot ericson at gmail dot com ¶17 years ago
+I tend to use alot of includes, and I found that the is_file is based on the script executed, not ran.
+if you request /foo.php and foo.php looks like this:
+<?php
+include('foobar/bar.php');
+?>
+and bar.php looks like this:
+<?php
+echo (is_file('foo/bar.txt'));
+?>
+
+Then PHP (on win32, php 5.x) would look for /foo/bar.txt and not /foobar/foo/bar.txt.
+you would have to rewrite the is_file statement for that, or change working directory.
+Noting this since I sat with the problem for some time,
+
+cheers, Toxik.98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
+98766789
